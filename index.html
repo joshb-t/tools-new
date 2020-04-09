@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <title>Age Calculator</title>
+  </head>
+  <style>
+    body,
+    html {
+      height: 100vh;
+    }
+    label {
+      font-weight: bold;
+    }
+  </style>
+  <body class="bg-dark text-white">
+    <div class="container d-flex h-100">
+      <div class="row justify-content-center align-self-center p-5">
+        <h1 class="font-weight-bolder">Age Calculator</h1>
+      </div>
+      <div class="row justify-content-center align-self-center p-5">
+        <div class="col">
+          <label for="startDate">Start Date</label>
+          <input type="date" id="startDate" class="form-control date-picker" />
+        </div>
+        <div class="col">
+          <label for="endDate">End Date</label>
+          <input type="date" id="endDate" class="form-control date-picker" />
+        </div>
+      </div>
+      <div
+        id="count"
+        class="row justify-content-center align-self-center"
+        style="border: 1px solid red; color: red; display: none;"
+      >
+        <div class="col">
+          <h1 id="numberOfDays" class="text-center"></h1>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"
+></script>
+<script>
+  $(".date-picker").on("change", function () {
+    if ($("#startDate").val() != "" && $("#endDate").val() != "") {
+      var start_date = new Date($("#startDate").val());
+      var end_date = new Date($("#endDate").val());
+      var diff = (end_date.getTime() - start_date.getTime()) / 8.64e7;
+      $("#numberOfDays").text(diff + (diff == 1 ? " day old" : " days old"));
+      $("#count").show();
+    } else {
+      $("#count").hide();
+    }
+  });
+</script>
